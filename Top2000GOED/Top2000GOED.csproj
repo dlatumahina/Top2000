@@ -49,6 +49,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -174,8 +176,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Artiest.cs" />
+    <Compile Include="Models\ArtiestsController.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Lijst.cs" />
+    <Compile Include="Models\LijstsController.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Song.cs" />
+    <Compile Include="Models\SongsController.cs" />
+    <Compile Include="Models\Top2000DataBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -190,6 +199,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -215,7 +225,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
@@ -235,6 +244,21 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Artiests\Create.cshtml" />
+    <Content Include="Views\Artiests\Delete.cshtml" />
+    <Content Include="Views\Artiests\Details.cshtml" />
+    <Content Include="Views\Artiests\Edit.cshtml" />
+    <Content Include="Views\Artiests\Index.cshtml" />
+    <Content Include="Views\Lijsts\Create.cshtml" />
+    <Content Include="Views\Lijsts\Delete.cshtml" />
+    <Content Include="Views\Lijsts\Details.cshtml" />
+    <Content Include="Views\Lijsts\Edit.cshtml" />
+    <Content Include="Views\Lijsts\Index.cshtml" />
+    <Content Include="Views\Songs\Create.cshtml" />
+    <Content Include="Views\Songs\Delete.cshtml" />
+    <Content Include="Views\Songs\Details.cshtml" />
+    <Content Include="Views\Songs\Edit.cshtml" />
+    <Content Include="Views\Songs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

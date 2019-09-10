@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Top2000GOED.Models.Song>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @if (this.User.IsInRole("admin")) {
+        @Html.ActionLink("Create New", "Create");
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Artiest.naam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.titel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jaar)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Artiest.naam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.titel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.jaar)
+        </td>
+        <td>
+
+
+
+            <!--Als admin is ingelogd kan je een liedje bewerken en verwijderen. Anders niet-->
+            @if (this.User.IsInRole("admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.songid })
+                @Html.ActionLink("Delete", "Delete", new { id = item.songid })
+                @Html.ActionLink("Details", "Details", new { id = item.songid })
+            }
+        </td>
+    </tr>
+}
+
+</table>

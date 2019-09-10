@@ -1,0 +1,31 @@
+﻿@model Top2000GOED.Models.Lijst
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Lijst</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Song.titel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Song.titel)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <!--Als admin is ingelogd zie je edit in de details knop, anders niet-->
+    @if (this.User.IsInRole("admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) 
+    }
+@Html.ActionLink("Back to List", "Index")
+</p>

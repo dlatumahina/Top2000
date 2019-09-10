@@ -1,0 +1,46 @@
+﻿@model Top2000GOED.Models.Song
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Song</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Artiest.naam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Artiest.naam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.titel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.titel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jaar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jaar)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <!--Als admin is ingelogd zie je edit in de details knop, anders niet-->
+    @if (this.User.IsInRole("admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.songid })}
+    @Html.ActionLink("Back to List", "Index")
+</p>
