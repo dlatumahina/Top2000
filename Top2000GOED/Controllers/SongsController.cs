@@ -14,13 +14,12 @@ namespace Top2000GOED.Models
         private Top2000DataBase db = new Top2000DataBase();
 
         // GET: Songs
-        
-        public ActionResult Index()
+
+        public ActionResult Index(string searching)
         {
-            var song = db.Song.Include(s => s.Artiest);
-            return View(song.ToList());
+            return View(db.Song.Where(x => x.titel.Contains(searching) || searching == null).ToList());
         }
-      
+
 
         // GET: Songs/Details/5
         public ActionResult Details(int? id)
