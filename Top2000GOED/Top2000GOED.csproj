@@ -200,6 +200,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ClassDiagram1.cd" />
+    <Content Include=".vs\config\applicationhost.config" />
+    <Content Include=".vs\Top2000GOED\v15\.suo" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -261,6 +263,7 @@
     <Content Include="Views\Songs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include=".vs\Top2000GOED\v15\Server\sqlite3\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
