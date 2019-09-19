@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList.Mvc;
+using PagedList;
 
 namespace Top2000GOED.Models
 {
@@ -14,11 +16,11 @@ namespace Top2000GOED.Models
         private Top2000DataBase db = new Top2000DataBase();
 
         // GET: Lijsts
-        public ActionResult Index()
+        public ActionResult Index(int? i)
         {
           // db.Lijst = omgezet naar variabel x en gesorteerd op jaar
             var lijst = db.Lijst.Include(l => l.Song).OrderBy(x => x.top2000jaar);
-            return View(lijst.ToList());
+            return View(lijst.ToList().ToPagedList(i ?? 1, 10));
         }
 
         [HttpPost]
