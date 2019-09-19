@@ -1,10 +1,11 @@
-﻿@model IEnumerable<Top2000GOED.Models.Song>
+﻿@model IPagedList<Top2000GOED.Models.Song>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@using PagedList.Mvc;
+@using PagedList;
 <h2>Index</h2>
 
 <p>
@@ -23,53 +24,55 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Artiest.naam)
+            @Html.DisplayNameFor(model => model.First().Artiest.naam)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.titel)
+            @Html.DisplayNameFor(model => model.First().titel)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.jaar)
+            @Html.DisplayNameFor(model => model.First().jaar)
         </th>
         <th></th>
     </tr>
-        @if (Model.Count() == 0)
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="3" style="color:red">
+                Niks Gevonden!
+            </td>
+        </tr>
+    }
+    else
+    {
+
+        foreach (var item in Model)
+
         {
             <tr>
-                <td colspan="3" style="color:red">
-                    Niks Gevonden
+                <td>
+                    @Html.DisplayFor(modelItem => item.Artiest.naam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.titel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.jaar)
+                </td>
+                <td>
+
+
+
+                    <!--Als admin is ingelogd kan je een liedje bewerken en verwijderen. Anders niet-->
+                    @if (this.User.IsInRole("admin"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.songid })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.songid })
+                        @Html.ActionLink("Details", "Details", new { id = item.songid })
+                    }
                 </td>
             </tr>
         }
-        else
-        {
-
-            foreach (var item in Model)
-
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Artiest.naam)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.titel)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.jaar)
-                    </td>
-                    <td>
-
-
-
-                        <!--Als admin is ingelogd kan je een liedje bewerken en verwijderen. Anders niet-->
-                        @if (this.User.IsInRole("admin"))
-                        {
-                            @Html.ActionLink("Edit", "Edit", new { id = item.songid })
-                            @Html.ActionLink("Delete", "Delete", new { id = item.songid })
-                            @Html.ActionLink("Details", "Details", new { id = item.songid })
-                        }
-                    </td>
-                </tr>
-            }
-        }
+    }
 </table>
+
+@Html.PagedListPager(Model,i=>Url.Action("Index", "Songs", new { i, search=Request.QueryString["search"]}))

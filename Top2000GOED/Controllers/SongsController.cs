@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList.Mvc;
+using PagedList;
 
 namespace Top2000GOED.Models
 {
@@ -15,9 +17,9 @@ namespace Top2000GOED.Models
 
         // GET: Songs
 
-        public ActionResult Index(string searching)
+        public ActionResult Index(string searching, int? i)
         {
-            return View(db.Song.Where(x => x.titel.Contains(searching) || searching == null).ToList());
+            return View(db.Song.Where(x => x.titel.Contains(searching) || searching == null).ToList().ToPagedList(i ?? 1,3));
         }
 
 
