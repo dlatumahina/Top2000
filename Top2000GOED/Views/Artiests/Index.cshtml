@@ -1,10 +1,11 @@
-﻿@model IEnumerable<Top2000GOED.Models.Artiest>
+﻿@model IPagedList<Top2000GOED.Models.Artiest>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@using PagedList.Mvc;
+@using PagedList;
 <h2>Index</h2>
 
 <p>
@@ -12,33 +13,35 @@
     {
         @Html.ActionLink("Create New", "Create")
     }
-    </p>
+</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.naam)
+            @Html.DisplayNameFor(model => model.First().naam)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.naam)
-        </td>
-        <td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.naam)
+            </td>
+            <td>
 
 
-            @Html.ActionLink("Details", "Details", new { id = item.artiestid })
-            <!--Als admin is ingelogd kan je een artiest bewerken en verwijderen. Anders niet-->
-            @if (this.User.IsInRole("admin"))
-            {
-                @Html.ActionLink("Delete", "Delete", new { id = item.artiestid })
-                @Html.ActionLink("Edit", "Edit", new { id = item.artiestid })
-            }
+                @Html.ActionLink("Details", "Details", new { id = item.artiestid })
+                <!--Als admin is ingelogd kan je een artiest bewerken en verwijderen. Anders niet-->
+                @if (this.User.IsInRole("admin"))
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.artiestid })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.artiestid })
+                }
 
-        </td>
-    </tr>
-}
+            </td>
+        </tr>
+    }
 
 </table>
+@Html.PagedListPager(Model, i => Url.Action("Index", "Artiests", new { i, search = Request.QueryString["search"] }))

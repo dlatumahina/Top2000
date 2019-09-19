@@ -1,10 +1,11 @@
-﻿@model IEnumerable<Top2000GOED.Models.Lijst>
+﻿@model IPagedList<Top2000GOED.Models.Lijst>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@using PagedList.Mvc;
+@using PagedList;
 <h2>Index</h2>
 
 <p>
@@ -12,7 +13,7 @@
     {
         @Html.ActionLink("Create New", "Create")
     }
-    </p>
+</p>
 <form action="" method="post">
     <select name="dropdown">
         <option value="2000">
@@ -81,33 +82,36 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Song.titel)
+            @Html.DisplayNameFor(model => model.First().Song.titel)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Song.titel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Song.Artiest.naam)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Song.jaar)
-        </td>
-        <td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Song.titel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Song.Artiest.naam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Song.jaar)
+            </td>
+            <td>
 
-            <!--Html.ActionLink("Details", "Details", new { id = item.PrimaryKey })*/-->
-            <!--Als admin is ingelogd kan je een artiest bewerken en verwijderen. Anders niet-->
-            @if (this.User.IsInRole("admin"))
-            {
-                @Html.ActionLink("Delete ", "Delete", new { idJaar = item.top2000jaar, idPositie = item.positie })
-                @Html.ActionLink("Edit", "Edit", new { idJaar = item.top2000jaar, idPositie = item.positie })
-            }
-        </td>
-    </tr>
-}
+                <!--Html.ActionLink("Details", "Details", new { id = item.PrimaryKey })*/-->
+                <!--Als admin is ingelogd kan je een artiest bewerken en verwijderen. Anders niet-->
+                @if (this.User.IsInRole("admin"))
+                {
+                    @Html.ActionLink("Delete ", "Delete", new { idJaar = item.top2000jaar, idPositie = item.positie })
+                    @Html.ActionLink("Edit", "Edit", new { idJaar = item.top2000jaar, idPositie = item.positie })
+                }
+            </td>
+        </tr>
+    }
 
 </table>
+
+@Html.PagedListPager(Model, i => Url.Action("Index", "Lijsts", new { i, search = Request.QueryString["search"] }))
