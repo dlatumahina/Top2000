@@ -6,6 +6,7 @@
 }
 <h2>Details</h2>
 <h4>@Html.ActionLink("Back to List", "Index")</h4>
+@*The name of the artist*@
 <div>
     <h4>Artiest</h4>
     <hr />
@@ -13,13 +14,12 @@
         <dt>
             @Html.DisplayNameFor(model => model.naam)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.naam)
         </dd>
-
     </dl>
 </div>
+@* show the number of songs from this artist from the current year. *@
 <div>
     <h4> Aantal liedjes in de Top-2000</h4>
     <hr />
@@ -32,6 +32,7 @@
         </dd>
     </dl>
 </div>
+@* all the songs of the chosen artist*@
 <div>
     <h4> Liedjes van de artiest</h4>
     <hr />
@@ -40,7 +41,7 @@
             @Html.DisplayNameFor(model => model.Song)
         </dt>
         <dd>
-            @Html.DisplayFor(Model => Model.Song)
+            @Html.DisplayFor(Model => Model.artiestid)
         </dd>
     </dl>
 </div>
