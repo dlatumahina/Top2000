@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList.Mvc;
+using PagedList;
 
 namespace Top2000GOED.Models
 {
@@ -14,9 +16,9 @@ namespace Top2000GOED.Models
         private Top2000DataBase db = new Top2000DataBase();
 
         // GET: Artiests
-        public ActionResult Index()
+        public ActionResult Index(int? i)
         {
-            return View(db.Artiest.ToList());
+            return View(db.Artiest.ToList().ToPagedList(i ?? 1, 10));
         }
 
         // GET: Artiests/Details/5

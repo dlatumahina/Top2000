@@ -193,6 +193,8 @@
     <Compile Include="Models\Top2000DataBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Views\ViewModels\ArtiestDetails.cs" />
+    <Compile Include="Views\ViewModels\ArtiestDetailsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

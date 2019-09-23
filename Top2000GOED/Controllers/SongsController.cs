@@ -17,9 +17,9 @@ namespace Top2000GOED.Models
 
         // GET: Songs
 
-        public ActionResult Index(string searching, int? i)
-        {
-            return View(db.Song.Where(x => x.titel.Contains(searching) || searching == null).ToList().ToPagedList(i ?? 1,3));
+        public ActionResult Index(string searching, int? i, string sortBy )
+        {  
+            return View(db.Song.Where(x => x.titel.Contains(searching) || searching == null).ToList().ToPagedList(i ?? 1,10));
         }
 
 
