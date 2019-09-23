@@ -16,9 +16,9 @@ namespace Top2000GOED.Models
         private Top2000DataBase db = new Top2000DataBase();
 
         // GET: Artiests
-        public ActionResult Index(int? i)
+        public ActionResult Index(int? i, string searching)
         {
-            return View(db.Artiest.ToList().ToPagedList(i ?? 1, 10));
+            return View(db.Artiest.Where(x => x.naam.Contains(searching) || searching == null).ToList().ToPagedList(i ?? 1, 3));
         }
 
         // GET: Artiests/Details/5
