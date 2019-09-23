@@ -41,7 +41,10 @@
             @Html.DisplayNameFor(model => model.Song)
         </dt>
         <dd>
-            @Html.DisplayFor(Model => Model.artiestid)
+            @foreach (var item in Model.Song)
+            {
+                <div>@item.titel</div>
+            }
         </dd>
     </dl>
 </div>
