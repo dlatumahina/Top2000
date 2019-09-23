@@ -1,5 +1,4 @@
 ﻿@model IPagedList<Top2000GOED.Models.Artiest>
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,30 +6,55 @@
 @using PagedList.Mvc;
 @using PagedList;
 <h2>Index</h2>
-
 <p>
     @if (this.User.IsInRole("admin"))
     {
         @Html.ActionLink("Create New", "Create")
     }
 </p>
-<table class="table">
+<table id="artistTable" class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.First().naam)
         </th>
+        <th>
+            Aantal x in de top 2000
+        </th>
+        <th>
+            Gemiddelde notering van de artiest in de top 2000
+        </th>
         <th></th>
     </tr>
-
     @foreach (var item in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.naam)
+                <a href="Artiests/artiestNummers?artiestId=@Html.DisplayFor(modelItem => item.artiestid)">@Html.DisplayFor(modelItem => item.naam)</a>
             </td>
             <td>
-
-
+                @Html.DisplayFor(modelItem => item.Song.Count)
+            </td>
+            <td>
+                <!--@Html.DisplayFor(modelItem => item.Song.ToList()[0].Lijst.ToList()[0].positie)-->
+                @{
+                    int avaragePosition = 0;
+                    int AantalKeerInLijst = 0;
+                    //Voor elk liedje van de artiest
+                    for (int i = 0; i < item.Song.Count; i++)
+                    {
+                        //Voor elke lijst waar het liedje van deze artiest staat
+                        for (int j = 0; j < item.Song.ToList()[i].Lijst.Count; j++)
+                        {
+                            //Tel de positie op bij de variabele
+                            avaragePosition += item.Song.ToList()[i].Lijst.ToList()[j].positie;
+                            AantalKeerInLijst++;
+                        }
+                    }
+                    avaragePosition /= AantalKeerInLijst;
+                }
+                @Html.Raw(avaragePosition)
+            </td>
+            <td>
                 @Html.ActionLink("Details", "Details", new { id = item.artiestid })
                 <!--Als admin is ingelogd kan je een artiest bewerken en verwijderen. Anders niet-->
                 @if (this.User.IsInRole("admin"))
@@ -38,10 +62,9 @@
                     @Html.ActionLink("Delete", "Delete", new { id = item.artiestid })
                     @Html.ActionLink("Edit", "Edit", new { id = item.artiestid })
                 }
-
             </td>
         </tr>
     }
-
 </table>
 @Html.PagedListPager(Model, i => Url.Action("Index", "Artiests", new { i, search = Request.QueryString["search"] }))
+
