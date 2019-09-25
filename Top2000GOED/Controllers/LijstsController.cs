@@ -1,24 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using PagedList;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using PagedList.Mvc;
-using PagedList;
+using Top2000GOED.Models;
 
-namespace Top2000GOED.Models
+namespace Top2000GOED.Controllers
 {
     public class LijstsController : Controller
     {
-        private Top2000DataBase db = new Top2000DataBase();
+        private Top2000Entities db = new Top2000Entities();
 
         // GET: Lijsts
         public ActionResult Index(int? i)
         {
-          // db.Lijst = omgezet naar variabel x en gesorteerd op jaar
+            // db.Lijst = omgezet naar variabel x en gesorteerd op jaar
             var lijst = db.Lijst.Include(l => l.Song).OrderBy(x => x.top2000jaar);
             return View(lijst.ToList().ToPagedList(i ?? 1, 10));
         }
@@ -106,7 +103,7 @@ namespace Top2000GOED.Models
 
         // GET: Lijsts/Delete/5
         public ActionResult Delete(int? idJaar, int? idPositie)
-        { 
+        {
             if (idJaar == null || idPositie == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

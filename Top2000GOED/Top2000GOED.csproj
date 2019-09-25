@@ -183,14 +183,35 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Artiest.cs" />
-    <Compile Include="Models\ArtiestsController.cs" />
+    <Compile Include="Models\Artiest.cs">
+      <DependentUpon>Top2000Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ArtiestsController.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Lijst.cs" />
-    <Compile Include="Models\LijstsController.cs" />
+    <Compile Include="Models\Lijst.cs">
+      <DependentUpon>Top2000Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\LijstsController.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Song.cs" />
+    <Compile Include="Models\Song.cs">
+      <DependentUpon>Top2000Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Top2000DataBase.cs" />
+    <Compile Include="Models\Top2000Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Top2000Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Top2000Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Top2000Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Top2000Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Top2000Model.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Views\ViewModels\ArtiestDetails.cs" />
@@ -206,11 +227,28 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\Top2000Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Top2000Model.edmx</DependentUpon>
+      <LastGenOutput>Top2000Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Top2000Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Top2000Model.edmx</DependentUpon>
+      <LastGenOutput>Top2000Model.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ClassDiagram1.cd" />
     <Content Include=".vs\config\applicationhost.config" />
     <Content Include=".vs\Top2000GOED\v15\.suo" />
+    <EntityDeploy Include="Models\Top2000Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Top2000Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Top2000Model.edmx.diagram">
+      <DependentUpon>Top2000Model.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -287,6 +325,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

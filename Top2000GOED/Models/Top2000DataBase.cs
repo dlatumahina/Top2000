@@ -1,9 +1,6 @@
 namespace Top2000GOED.Models
 {
-    using System;
     using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
 
     public partial class Top2000DataBase : DbContext
     {

@@ -8,45 +8,22 @@
 <h4>@Html.ActionLink("Back to List", "Index")</h4>
 @*The name of the artist*@
 <div>
-    <h4>Artiest</h4>
+    <h4>Artiest: <b>@Html.DisplayFor(model=> model.naam)</b></h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.naam)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.naam)
-        </dd>
-    </dl>
 </div>
 @* show the number of songs from this artist from the current year. *@
 <div>
-    <h4> Aantal liedjes in de Top-2000</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Song)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Song.Count)
-        </dd>
-    </dl>
+    <h4> Aantal noteringen van <b>@Html.DisplayFor(model=> model.naam)</b> in de Top-2000:</h4>
+          <h4><b>@Html.DisplayFor(model => model.Song.Count)</b></h4>
 </div>
 @* all the songs of the chosen artist*@
 <div>
-    <h4> Liedjes van de artiest</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Song)
-        </dt>
+    <h4>Meer liedjes van: <b>@Html.DisplayFor(model=> model.naam)</b></h4>
         @*Shows the list of all the songs of this artist*@
-        <dd>
             @foreach (var item in Model.Song)
-            {
+             {
                 <div>@item.titel</div>
-            }
-        </dd>
+             }
     </dl>
 </div>
 <p>

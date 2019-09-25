@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using PagedList;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using PagedList.Mvc;
-using PagedList;
 
 namespace Top2000GOED.Models
 {
     public class SongsController : Controller
     {
-        private Top2000DataBase db = new Top2000DataBase();
+        private Top2000Entities db = new Top2000Entities();
 
         // GET: Songs
 
-        public ActionResult Index(string searching, int? i, string sortBy )
-        {  
-            return View(db.Song.Where(x => x.titel.Contains(searching) || searching == null).ToList().ToPagedList(i ?? 1,10));
+        public ActionResult Index(string searching, int? i, string sortBy)
+        {
+            return View(db.Song.Where(x => x.titel.Contains(searching) || searching == null).ToList().ToPagedList(i ?? 1, 10));
         }
 
 

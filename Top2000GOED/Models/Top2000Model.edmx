@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Top2000Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Artiest">
+          <Key>
+            <PropertyRef Name="artiestid" />
+          </Key>
+          <Property Name="artiestid" Type="int" Nullable="false" />
+          <Property Name="naam" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lijst">
+          <Key>
+            <PropertyRef Name="songid" />
+            <PropertyRef Name="top2000jaar" />
+          </Key>
+          <Property Name="songid" Type="int" Nullable="false" />
+          <Property Name="top2000jaar" Type="int" Nullable="false" />
+          <Property Name="positie" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Song">
+          <Key>
+            <PropertyRef Name="songid" />
+          </Key>
+          <Property Name="songid" Type="int" Nullable="false" />
+          <Property Name="artiestid" Type="int" Nullable="false" />
+          <Property Name="titel" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="jaar" Type="int" Nullable="false" />
+          <Property Name="verloop" Type="nchar" MaxLength="10" />
+          <Property Name="foto" Type="image" />
+        </EntityType>
+        <Association Name="FK_Lijst_Song">
+          <End Role="Song" Type="Self.Song" Multiplicity="1" />
+          <End Role="Lijst" Type="Self.Lijst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Song">
+              <PropertyRef Name="songid" />
+            </Principal>
+            <Dependent Role="Lijst">
+              <PropertyRef Name="songid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Song_Artiest">
+          <End Role="Artiest" Type="Self.Artiest" Multiplicity="1" />
+          <End Role="Song" Type="Self.Song" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artiest">
+              <PropertyRef Name="artiestid" />
+            </Principal>
+            <Dependent Role="Song">
+              <PropertyRef Name="artiestid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Top2000ModelStoreContainer">
+          <EntitySet Name="Artiest" EntityType="Self.Artiest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lijst" EntityType="Self.Lijst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Song" EntityType="Self.Song" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Lijst_Song" Association="Self.FK_Lijst_Song">
+            <End Role="Song" EntitySet="Song" />
+            <End Role="Lijst" EntitySet="Lijst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Song_Artiest" Association="Self.FK_Song_Artiest">
+            <End Role="Artiest" EntitySet="Artiest" />
+            <End Role="Song" EntitySet="Song" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Top2000Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Artiest">
+          <Key>
+            <PropertyRef Name="artiestid" />
+          </Key>
+          <Property Name="artiestid" Type="Int32" Nullable="false" />
+          <Property Name="naam" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Song" Relationship="Self.FK_Song_Artiest" FromRole="Artiest" ToRole="Song" />
+        </EntityType>
+        <EntityType Name="Lijst">
+          <Key>
+            <PropertyRef Name="songid" />
+            <PropertyRef Name="top2000jaar" />
+          </Key>
+          <Property Name="songid" Type="Int32" Nullable="false" />
+          <Property Name="top2000jaar" Type="Int32" Nullable="false" />
+          <Property Name="positie" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Song" Relationship="Self.FK_Lijst_Song" FromRole="Lijst" ToRole="Song" />
+        </EntityType>
+        <EntityType Name="Song">
+          <Key>
+            <PropertyRef Name="songid" />
+          </Key>
+          <Property Name="songid" Type="Int32" Nullable="false" />
+          <Property Name="artiestid" Type="Int32" Nullable="false" />
+          <Property Name="titel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="jaar" Type="Int32" Nullable="false" />
+          <Property Name="verloop" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Artiest" Relationship="Self.FK_Song_Artiest" FromRole="Song" ToRole="Artiest" />
+          <NavigationProperty Name="Lijst" Relationship="Self.FK_Lijst_Song" FromRole="Song" ToRole="Lijst" />
+        </EntityType>
+        <Association Name="FK_Song_Artiest">
+          <End Role="Artiest" Type="Self.Artiest" Multiplicity="1" />
+          <End Role="Song" Type="Self.Song" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artiest">
+              <PropertyRef Name="artiestid" />
+            </Principal>
+            <Dependent Role="Song">
+              <PropertyRef Name="artiestid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lijst_Song">
+          <End Role="Song" Type="Self.Song" Multiplicity="1" />
+          <End Role="Lijst" Type="Self.Lijst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Song">
+              <PropertyRef Name="songid" />
+            </Principal>
+            <Dependent Role="Lijst">
+              <PropertyRef Name="songid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Top2000Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Artiest" EntityType="Self.Artiest" />
+          <EntitySet Name="Lijst" EntityType="Self.Lijst" />
+          <EntitySet Name="Song" EntityType="Self.Song" />
+          <AssociationSet Name="FK_Song_Artiest" Association="Self.FK_Song_Artiest">
+            <End Role="Artiest" EntitySet="Artiest" />
+            <End Role="Song" EntitySet="Song" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lijst_Song" Association="Self.FK_Lijst_Song">
+            <End Role="Song" EntitySet="Song" />
+            <End Role="Lijst" EntitySet="Lijst" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Top2000ModelStoreContainer" CdmEntityContainer="Top2000Entities">
+          <EntitySetMapping Name="Artiest">
+            <EntityTypeMapping TypeName="Top2000Model.Artiest">
+              <MappingFragment StoreEntitySet="Artiest">
+                <ScalarProperty Name="artiestid" ColumnName="artiestid" />
+                <ScalarProperty Name="naam" ColumnName="naam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lijst">
+            <EntityTypeMapping TypeName="Top2000Model.Lijst">
+              <MappingFragment StoreEntitySet="Lijst">
+                <ScalarProperty Name="songid" ColumnName="songid" />
+                <ScalarProperty Name="top2000jaar" ColumnName="top2000jaar" />
+                <ScalarProperty Name="positie" ColumnName="positie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Song">
+            <EntityTypeMapping TypeName="Top2000Model.Song">
+              <MappingFragment StoreEntitySet="Song">
+                <ScalarProperty Name="songid" ColumnName="songid" />
+                <ScalarProperty Name="artiestid" ColumnName="artiestid" />
+                <ScalarProperty Name="titel" ColumnName="titel" />
+                <ScalarProperty Name="jaar" ColumnName="jaar" />
+                <ScalarProperty Name="verloop" ColumnName="verloop" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

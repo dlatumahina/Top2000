@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using PagedList;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using PagedList.Mvc;
-using PagedList;
+using Top2000GOED.Models;
 
-namespace Top2000GOED.Models
+namespace Top2000GOED.Controllers
 {
+
     public class ArtiestsController : Controller
     {
-        private Top2000DataBase db = new Top2000DataBase();
+        private Top2000Entities db = new Top2000Entities();
 
         // GET: Artiests
         public ActionResult Index(int? i, string searching)
