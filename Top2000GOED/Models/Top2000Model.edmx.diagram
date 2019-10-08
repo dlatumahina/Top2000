@@ -5,11 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="61b0b1573d734ed8babd0c627900d388" Name="Diagram1">
-        <EntityTypeShape EntityType="Top2000Model.Artiest" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Top2000Model.Lijst" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Top2000Model.Song" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="Top2000Model.FK_Song_Artiest" ManuallyRouted="false" />
-        <AssociationConnector Association="Top2000Model.FK_Lijst_Song" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Top2000Model.Artiest" Width="1.5" PointX="1" PointY="3.25" />
+        <EntityTypeShape EntityType="Top2000Model.Lijst" Width="1.5" PointX="3.375" PointY="0.5" />
+        <EntityTypeShape EntityType="Top2000Model.Song" Width="1.5" PointX="1" PointY="0.5" />
+        <AssociationConnector Association="Top2000Model.FK_Lijst_Song" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

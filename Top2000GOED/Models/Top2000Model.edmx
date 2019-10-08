@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Top2000Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Top2000Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Artiest">
           <Key>
             <PropertyRef Name="artiestid" />
@@ -16,6 +16,7 @@
           <Key>
             <PropertyRef Name="songid" />
             <PropertyRef Name="top2000jaar" />
+            <PropertyRef Name="positie" />
           </Key>
           <Property Name="songid" Type="int" Nullable="false" />
           <Property Name="top2000jaar" Type="int" Nullable="false" />
@@ -44,18 +45,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Song_Artiest">
-          <End Role="Artiest" Type="Self.Artiest" Multiplicity="1" />
-          <End Role="Song" Type="Self.Song" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Artiest">
-              <PropertyRef Name="artiestid" />
-            </Principal>
-            <Dependent Role="Song">
-              <PropertyRef Name="artiestid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Top2000ModelStoreContainer">
           <EntitySet Name="Artiest" EntityType="Self.Artiest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lijst" EntityType="Self.Lijst" Schema="dbo" store:Type="Tables" />
@@ -64,33 +53,37 @@
             <End Role="Song" EntitySet="Song" />
             <End Role="Lijst" EntitySet="Lijst" />
           </AssociationSet>
-          <AssociationSet Name="FK_Song_Artiest" Association="Self.FK_Song_Artiest">
-            <End Role="Artiest" EntitySet="Artiest" />
-            <End Role="Song" EntitySet="Song" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Top2000Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Top2000Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Artiest" EntityType="Top2000Model.Artiest" />
+          <EntitySet Name="Lijst" EntityType="Top2000Model.Lijst" />
+          <EntitySet Name="Song" EntityType="Top2000Model.Song" />
+          <AssociationSet Name="FK_Lijst_Song" Association="Top2000Model.FK_Lijst_Song">
+            <End Role="Song" EntitySet="Song" />
+            <End Role="Lijst" EntitySet="Lijst" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Artiest">
           <Key>
             <PropertyRef Name="artiestid" />
           </Key>
           <Property Name="artiestid" Type="Int32" Nullable="false" />
-          <Property Name="naam" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Song" Relationship="Self.FK_Song_Artiest" FromRole="Artiest" ToRole="Song" />
+          <Property Name="naam" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Lijst">
           <Key>
             <PropertyRef Name="songid" />
             <PropertyRef Name="top2000jaar" />
+            <PropertyRef Name="positie" />
           </Key>
           <Property Name="songid" Type="Int32" Nullable="false" />
           <Property Name="top2000jaar" Type="Int32" Nullable="false" />
           <Property Name="positie" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Song" Relationship="Self.FK_Lijst_Song" FromRole="Lijst" ToRole="Song" />
+          <NavigationProperty Name="Song" Relationship="Top2000Model.FK_Lijst_Song" FromRole="Lijst" ToRole="Song" />
         </EntityType>
         <EntityType Name="Song">
           <Key>
@@ -98,28 +91,15 @@
           </Key>
           <Property Name="songid" Type="Int32" Nullable="false" />
           <Property Name="artiestid" Type="Int32" Nullable="false" />
-          <Property Name="titel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="titel" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="jaar" Type="Int32" Nullable="false" />
           <Property Name="verloop" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="Artiest" Relationship="Self.FK_Song_Artiest" FromRole="Song" ToRole="Artiest" />
-          <NavigationProperty Name="Lijst" Relationship="Self.FK_Lijst_Song" FromRole="Song" ToRole="Lijst" />
+          <NavigationProperty Name="Lijst" Relationship="Top2000Model.FK_Lijst_Song" FromRole="Song" ToRole="Lijst" />
         </EntityType>
-        <Association Name="FK_Song_Artiest">
-          <End Role="Artiest" Type="Self.Artiest" Multiplicity="1" />
-          <End Role="Song" Type="Self.Song" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Artiest">
-              <PropertyRef Name="artiestid" />
-            </Principal>
-            <Dependent Role="Song">
-              <PropertyRef Name="artiestid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Lijst_Song">
-          <End Role="Song" Type="Self.Song" Multiplicity="1" />
-          <End Role="Lijst" Type="Self.Lijst" Multiplicity="*" />
+          <End Type="Top2000Model.Song" Role="Song" Multiplicity="1" />
+          <End Type="Top2000Model.Lijst" Role="Lijst" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Song">
               <PropertyRef Name="songid" />
@@ -129,20 +109,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Top2000Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Artiest" EntityType="Self.Artiest" />
-          <EntitySet Name="Lijst" EntityType="Self.Lijst" />
-          <EntitySet Name="Song" EntityType="Self.Song" />
-          <AssociationSet Name="FK_Song_Artiest" Association="Self.FK_Song_Artiest">
-            <End Role="Artiest" EntitySet="Artiest" />
-            <End Role="Song" EntitySet="Song" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Lijst_Song" Association="Self.FK_Lijst_Song">
-            <End Role="Song" EntitySet="Song" />
-            <End Role="Lijst" EntitySet="Lijst" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -151,29 +118,29 @@
           <EntitySetMapping Name="Artiest">
             <EntityTypeMapping TypeName="Top2000Model.Artiest">
               <MappingFragment StoreEntitySet="Artiest">
-                <ScalarProperty Name="artiestid" ColumnName="artiestid" />
                 <ScalarProperty Name="naam" ColumnName="naam" />
+                <ScalarProperty Name="artiestid" ColumnName="artiestid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Lijst">
             <EntityTypeMapping TypeName="Top2000Model.Lijst">
               <MappingFragment StoreEntitySet="Lijst">
-                <ScalarProperty Name="songid" ColumnName="songid" />
-                <ScalarProperty Name="top2000jaar" ColumnName="top2000jaar" />
                 <ScalarProperty Name="positie" ColumnName="positie" />
+                <ScalarProperty Name="top2000jaar" ColumnName="top2000jaar" />
+                <ScalarProperty Name="songid" ColumnName="songid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Song">
             <EntityTypeMapping TypeName="Top2000Model.Song">
               <MappingFragment StoreEntitySet="Song">
-                <ScalarProperty Name="songid" ColumnName="songid" />
-                <ScalarProperty Name="artiestid" ColumnName="artiestid" />
-                <ScalarProperty Name="titel" ColumnName="titel" />
-                <ScalarProperty Name="jaar" ColumnName="jaar" />
-                <ScalarProperty Name="verloop" ColumnName="verloop" />
                 <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="verloop" ColumnName="verloop" />
+                <ScalarProperty Name="jaar" ColumnName="jaar" />
+                <ScalarProperty Name="titel" ColumnName="titel" />
+                <ScalarProperty Name="artiestid" ColumnName="artiestid" />
+                <ScalarProperty Name="songid" ColumnName="songid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
