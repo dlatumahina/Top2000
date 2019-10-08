@@ -8,7 +8,7 @@ using Top2000GOED.Models;
 
 namespace Top2000GOED.Controllers
 {
-    //test
+    
     public class ArtiestsController : Controller
     {
         private Top2000Entities db = new Top2000Entities();
