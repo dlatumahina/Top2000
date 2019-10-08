@@ -19,8 +19,8 @@ namespace Top2000GOED.Models
                 .HasMany(e => e.Song)
                 .WithRequired(e => e.Artiest)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Song>()
+	 
+	         modelBuilder.Entity<Song>()
                 .HasMany(e => e.Lijst)
                 .WithRequired(e => e.Song)
                 .WillCascadeOnDelete(false);
