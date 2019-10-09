@@ -27,7 +27,6 @@ namespace Top2000GOED.Models
         public string verloop { get; set; }
         public byte[] foto { get; set; }
     
-        public virtual Artiest Artiest { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Lijst> Lijst { get; set; }
     }
