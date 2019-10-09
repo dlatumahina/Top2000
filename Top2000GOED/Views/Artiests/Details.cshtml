@@ -4,8 +4,8 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Details</h2>
-<h4>@Html.ActionLink("Back to List", "Index")</h4>
+<center><h2>Overzicht</h2></center>
+<hr />
 @*The name of the artist*@
 <div>
     <h4>Artiest: <b>@Html.DisplayFor(model=> model.naam)</b></h4>
@@ -13,8 +13,10 @@
 </div>
 @* show the number of songs from this artist from the current year. *@
 <div>
-    <h4> Aantal noteringen van <b>@Html.DisplayFor(model=> model.naam)</b> in de Top-2000:</h4>
-          <h4><b>@Html.DisplayFor(model => model.Song.Count)</b></h4>
+    <h4> Aantal noteringen van <b>@Html.DisplayFor(model=> model.naam)</b> in de Top-2000: <b>@Html.DisplayFor(model => model.Song.Count)</b></h4>
+
+	<hr />
+          
     <b></b>
 </div>
 @* all the songs of the chosen artist*@
@@ -37,3 +39,4 @@
         @Html.ActionLink("Edit", "Edit", new { id = Model.artiestid })
     }
 </p>
+<button><h4>@Html.ActionLink("Terug", "Index")</h4></button>
