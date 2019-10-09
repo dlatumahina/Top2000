@@ -19,5 +19,10 @@ namespace Top2000GOED.Models
         public int positie { get; set; }
     
         public virtual Song Song { get; set; }
+
+        internal static object ToList()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -29,5 +29,6 @@ namespace Top2000GOED.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Lijst> Lijst { get; set; }
+        public virtual Artiest Artiest { get; set; }
     }
 }

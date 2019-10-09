@@ -45,6 +45,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Song_Artiest">
+          <End Role="Artiest" Type="Self.Artiest" Multiplicity="1" />
+          <End Role="Song" Type="Self.Song" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artiest">
+              <PropertyRef Name="artiestid" />
+            </Principal>
+            <Dependent Role="Song">
+              <PropertyRef Name="artiestid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Top2000ModelStoreContainer">
           <EntitySet Name="Artiest" EntityType="Self.Artiest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lijst" EntityType="Self.Lijst" Schema="dbo" store:Type="Tables" />
@@ -52,6 +64,10 @@
           <AssociationSet Name="FK_Lijst_Song" Association="Self.FK_Lijst_Song">
             <End Role="Song" EntitySet="Song" />
             <End Role="Lijst" EntitySet="Lijst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Song_Artiest" Association="Self.FK_Song_Artiest">
+            <End Role="Artiest" EntitySet="Artiest" />
+            <End Role="Song" EntitySet="Song" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -66,6 +82,10 @@
             <End Role="Song" EntitySet="Song" />
             <End Role="Lijst" EntitySet="Lijst" />
           </AssociationSet>
+          <AssociationSet Name="FK_Song_Artiest" Association="Top2000Model.FK_Song_Artiest">
+            <End Role="Artiest" EntitySet="Artiest" />
+            <End Role="Song" EntitySet="Song" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Artiest">
           <Key>
@@ -73,6 +93,7 @@
           </Key>
           <Property Name="artiestid" Type="Int32" Nullable="false" />
           <Property Name="naam" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Song" Relationship="Top2000Model.FK_Song_Artiest" FromRole="Artiest" ToRole="Song" />
         </EntityType>
         <EntityType Name="Lijst">
           <Key>
@@ -96,6 +117,7 @@
           <Property Name="verloop" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Lijst" Relationship="Top2000Model.FK_Lijst_Song" FromRole="Song" ToRole="Lijst" />
+          <NavigationProperty Name="Artiest" Relationship="Top2000Model.FK_Song_Artiest" FromRole="Song" ToRole="Artiest" />
         </EntityType>
         <Association Name="FK_Lijst_Song">
           <End Type="Top2000Model.Song" Role="Song" Multiplicity="1" />
@@ -106,6 +128,18 @@
             </Principal>
             <Dependent Role="Lijst">
               <PropertyRef Name="songid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Song_Artiest">
+          <End Type="Top2000Model.Artiest" Role="Artiest" Multiplicity="1" />
+          <End Type="Top2000Model.Song" Role="Song" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artiest">
+              <PropertyRef Name="artiestid" />
+            </Principal>
+            <Dependent Role="Song">
+              <PropertyRef Name="artiestid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

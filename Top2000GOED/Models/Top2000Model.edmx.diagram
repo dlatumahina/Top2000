@@ -9,6 +9,7 @@
         <EntityTypeShape EntityType="Top2000Model.Lijst" Width="1.5" PointX="3.375" PointY="0.5" />
         <EntityTypeShape EntityType="Top2000Model.Song" Width="1.5" PointX="1" PointY="0.5" />
         <AssociationConnector Association="Top2000Model.FK_Lijst_Song" />
+        <AssociationConnector Association="Top2000Model.FK_Song_Artiest" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
