@@ -187,6 +187,15 @@
     <Compile Include="Models\Song.cs">
       <DependentUpon>Top2000Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\spGetDetailsArtiest_Result.cs">
+      <DependentUpon>Top2000Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetListByYear_Result.cs">
+      <DependentUpon>Top2000Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetSongsByYear_Result.cs">
+      <DependentUpon>Top2000Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Top2000DataBase.cs" />
     <Compile Include="Models\Top2000Model.Context.cs">
       <AutoGen>True</AutoGen>
