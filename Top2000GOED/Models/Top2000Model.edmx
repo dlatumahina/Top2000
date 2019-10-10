@@ -57,6 +57,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="spGetDetailsArtiest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="YEAR" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetListByYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="YEAR" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetSongsByYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="YEAR" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="Top2000ModelStoreContainer">
           <EntitySet Name="Artiest" EntityType="Self.Artiest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lijst" EntityType="Self.Lijst" Schema="dbo" store:Type="Tables" />
@@ -86,6 +95,15 @@
             <End Role="Artiest" EntitySet="Artiest" />
             <End Role="Song" EntitySet="Song" />
           </AssociationSet>
+          <FunctionImport Name="spGetDetailsArtiest" ReturnType="Collection(Top2000Model.spGetDetailsArtiest_Result)">
+            <Parameter Name="YEAR" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetListByYear" ReturnType="Collection(Top2000Model.spGetListByYear_Result)">
+            <Parameter Name="YEAR" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetSongsByYear" ReturnType="Collection(Top2000Model.spGetSongsByYear_Result)">
+            <Parameter Name="YEAR" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Artiest">
           <Key>
@@ -143,6 +161,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="spGetDetailsArtiest_Result">
+          <Property Type="Int32" Name="positie" Nullable="false" />
+          <Property Type="String" Name="naam" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="titel" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="jaar" Nullable="false" />
+          <Property Type="Int32" Name="top2000jaar" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spGetListByYear_Result">
+          <Property Type="Int32" Name="positie" Nullable="false" />
+          <Property Type="String" Name="naam" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="titel" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="jaar" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spGetSongsByYear_Result">
+          <Property Type="Int32" Name="jaar" Nullable="false" />
+          <Property Type="String" Name="titel" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="naam" Nullable="false" MaxLength="100" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -178,6 +214,36 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spGetDetailsArtiest" FunctionName="Top2000Model.Store.spGetDetailsArtiest">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Top2000Model.spGetDetailsArtiest_Result">
+                <ScalarProperty Name="positie" ColumnName="positie" />
+                <ScalarProperty Name="naam" ColumnName="naam" />
+                <ScalarProperty Name="titel" ColumnName="titel" />
+                <ScalarProperty Name="jaar" ColumnName="jaar" />
+                <ScalarProperty Name="top2000jaar" ColumnName="top2000jaar" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetListByYear" FunctionName="Top2000Model.Store.spGetListByYear">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Top2000Model.spGetListByYear_Result">
+                <ScalarProperty Name="positie" ColumnName="positie" />
+                <ScalarProperty Name="naam" ColumnName="naam" />
+                <ScalarProperty Name="titel" ColumnName="titel" />
+                <ScalarProperty Name="jaar" ColumnName="jaar" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetSongsByYear" FunctionName="Top2000Model.Store.spGetSongsByYear">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Top2000Model.spGetSongsByYear_Result">
+                <ScalarProperty Name="jaar" ColumnName="jaar" />
+                <ScalarProperty Name="titel" ColumnName="titel" />
+                <ScalarProperty Name="naam" ColumnName="naam" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

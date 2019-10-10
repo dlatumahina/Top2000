@@ -21,7 +21,7 @@
 </div>
 @* all the songs of the chosen artist*@
 <table>
-    <h4>Meer liedjes van: <b>@Html.DisplayFor(model => model.naam)</b></h4>
+    <h4>Meer liedjes van: <b>@Html.DisplayFor(model => model.naam)</b> van alle jaren.</h4>
     @*Shows the list of all the songs of this artist*@
     <th>
         @foreach (var item in Model.Song)
@@ -31,6 +31,8 @@
         }
     </th>
 </table>
+
+    
 
 <p>
     <!--Als admin is ingelogd zie je edit in de details knop, anders niet-->

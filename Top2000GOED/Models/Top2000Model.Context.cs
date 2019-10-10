@@ -12,6 +12,8 @@ namespace Top2000GOED.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class Top2000Entities : DbContext
     {
@@ -28,5 +30,32 @@ namespace Top2000GOED.Models
         public virtual DbSet<Artiest> Artiest { get; set; }
         public virtual DbSet<Lijst> Lijst { get; set; }
         public virtual DbSet<Song> Song { get; set; }
+    
+        public virtual ObjectResult<spGetDetailsArtiest_Result> spGetDetailsArtiest(Nullable<int> yEAR)
+        {
+            var yEARParameter = yEAR.HasValue ?
+                new ObjectParameter("YEAR", yEAR) :
+                new ObjectParameter("YEAR", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetDetailsArtiest_Result>("spGetDetailsArtiest", yEARParameter);
+        }
+    
+        public virtual ObjectResult<spGetListByYear_Result> spGetListByYear(Nullable<int> yEAR)
+        {
+            var yEARParameter = yEAR.HasValue ?
+                new ObjectParameter("YEAR", yEAR) :
+                new ObjectParameter("YEAR", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetListByYear_Result>("spGetListByYear", yEARParameter);
+        }
+    
+        public virtual ObjectResult<spGetSongsByYear_Result> spGetSongsByYear(Nullable<int> yEAR)
+        {
+            var yEARParameter = yEAR.HasValue ?
+                new ObjectParameter("YEAR", yEAR) :
+                new ObjectParameter("YEAR", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetSongsByYear_Result>("spGetSongsByYear", yEARParameter);
+        }
     }
 }
