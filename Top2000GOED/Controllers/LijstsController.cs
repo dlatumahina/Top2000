@@ -21,12 +21,12 @@ namespace Top2000GOED.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(int dropdown)
-        {
-            // db.Lijst = Het top2000 jaar moet gelijk zijn aan wat er is aangeklikt op de dropdownmenu
-            var lijst = db.Lijst.Include(l => l.Song).Where(x => x.top2000jaar == dropdown);
-            return View(Lijst.ToList());
-        }
+      //  public ActionResult Index(int dropdown)
+       // {
+        //    // db.Lijst = Het top2000 jaar moet gelijk zijn aan wat er is aangeklikt op de dropdownmenu
+        //    var lijst = db.Lijst.Include(l => l.Song).Where(x => x.top2000jaar == dropdown);
+         //   return View(Lijst.ToList());
+       // }
 
         // GET: Lijsts/Details/5
         public ActionResult Details(int? id)
