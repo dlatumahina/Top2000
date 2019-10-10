@@ -1,27 +1,32 @@
 ﻿@model IPagedList<Top2000GOED.Models.Artiest>
 @{
-				/**/
+	/**/
 
-				ViewBag.Title = "Index";
-				Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using System.Linq
 @using PagedList.Mvc;
 @using PagedList;
 @using Top2000GOED.Models
 <center><h2>Artiest</h2></center>
+
 <hr />
-<p>
-	@if (this.User.IsInRole("admin"))
-	{
-		@Html.ActionLink("Create New", "Create")
-	}
-</p>
 
 @using (Html.BeginForm("Index", "Artiests", FormMethod.Get))
+
 {
-	@Html.TextBox("Searching")<input style="margin-left:5px" type="submit" value="Zoeken" class="btn-primary btn-default" />
+@Html.TextBox("Searching")<input style="margin-left:5px" type="submit" value="Zoeken" class="btn-primary btn-default" />
 }
+
+<br />
+
+<p>
+		@if (this.User.IsInRole("admin"))
+		{
+			<button>@Html.ActionLink("Aanmaken", "Create")</button>
+		}
+</p>
 
 <hr />
 
@@ -66,12 +71,12 @@
 					<hr>
 				</td>
 				<td>
-					<button> @Html.ActionLink("Overzicht", "Details", new { id = item.artiestid }) </button>
+					@Html.ActionLink("Overzicht", "Details", new { id = item.artiestid })
 					<!--Als admin is ingelogd kan je een artiest bewerken en verwijderen. Anders niet-->
 					@if (this.User.IsInRole("admin"))
 					{
-						@Html.ActionLink("Delete", "Delete", new { id = item.artiestid })
-						@Html.ActionLink("Edit", "Edit", new { id = item.artiestid })
+						@Html.ActionLink("Verwijder", "Delete", new { id = item.artiestid })
+						@Html.ActionLink("Aanpassen", "Edit", new { id = item.artiestid })
 					}
 				</td>
 			</tr>

@@ -32,11 +32,16 @@
     </th>
 </table>
 
+<hr />
+
 <p>
     <!--Als admin is ingelogd zie je edit in de details knop, anders niet-->
     @if (this.User.IsInRole("admin"))
     {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.artiestid })
-    }
+	<button>@Html.ActionLink("Aanpassen", "Edit", new { id = Model.artiestid })</button>
+		}
 </p>
+
+<hr />
+
 <button><h4>@Html.ActionLink("Terug", "Index")</h4></button>
