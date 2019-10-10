@@ -5,42 +5,47 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<center><h2>Overzicht</h2></center>
+
+<br /> 
 
 <div>
-    <h4>Song</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Artiest.naam)
-        </dt>
+	<h4>Liedjes</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			Naam
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Artiest.naam)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Artiest.naam)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.titel)
-        </dt>
+		<dt>
+			Titel
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.titel)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.titel)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.jaar)
-        </dt>
+		<dt>
+			Jaar
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.jaar)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.jaar)
+		</dd>
 
-    </dl>
+	</dl>
 </div>
+<br />
 <p>
     <!--Als admin is ingelogd zie je edit in de details knop, anders niet-->
     @if (this.User.IsInRole("admin"))
     {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.songid })}
-    @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Aanpassen", "Edit", new { id = Model.songid })}
+	<br />
+	<br />
+        @Html.ActionLink("Terug", "Index")
 </p>

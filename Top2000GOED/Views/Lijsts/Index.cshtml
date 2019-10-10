@@ -6,15 +6,11 @@
 }
 @using PagedList.Mvc;
 @using PagedList;
+@using Top2000GOED.Models
 <center><h2>Lijst</h2></center>
 
 <hr />
-<p>
-	@if (this.User.IsInRole("admin"))
-	{
-		@Html.ActionLink("Create New", "Create")
-	}
-</p>
+
 <form action="" method="post">
 	<select name="dropdown">
 		<option value="2000">
@@ -80,6 +76,13 @@
 	</select>
 	<input type="submit" value="Zoeken" class="btn btn-primary" />
 </form>
+<br />
+<p>
+	@if (this.User.IsInRole("admin"))
+	{
+		<button>@Html.ActionLink("Aanmaken", "Create")</button>
+	}
+</p>
 <hr />
 <table class="table">
 	<tr>
@@ -106,10 +109,10 @@
 				<!--Html.ActionLink("Details", "Details", new { id = item.PrimaryKey })*/-->
 				<!--Als admin is ingelogd kan je een artiest bewerken en verwijderen. Anders niet-->
 				@if (this.User.IsInRole("admin"))
-	{
-			<button>@Html.ActionLink("Delete ", "Delete", new { idJaar = item.top2000jaar, idPositie = item.positie })</button>
-			<button>@Html.ActionLink("Edit", "Edit", new { idJaar = item.top2000jaar, idPositie = item.positie })</button>
-}
+				{
+					<button>@Html.ActionLink("Verwijderen ", "Delete", new { idJaar = item.top2000jaar, idPositie = item.positie })</button>
+					<button>@Html.ActionLink("Aanpassen", "Edit", new { idJaar = item.top2000jaar, idPositie = item.positie })</button>
+				}
 			</td>
 		</tr>
 	}

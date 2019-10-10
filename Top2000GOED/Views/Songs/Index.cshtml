@@ -16,7 +16,7 @@
 <p>
 	@if (this.User.IsInRole("admin"))
 	{
-		@Html.ActionLink("Create New", "Create");
+		@Html.ActionLink("Aanmaken", "Create");
 	}
 </p>
 
@@ -83,9 +83,9 @@
 					<!--Als admin is ingelogd kan je een liedje bewerken en verwijderen. Anders niet-->
 					@if (this.User.IsInRole("admin"))
 					{
-						@Html.ActionLink("Edit", "Edit", new { id = item.songid })
-						@Html.ActionLink("Delete", "Delete", new { id = item.songid })
-						@Html.ActionLink("Details", "Details", new { id = item.songid })
+						@Html.ActionLink("Aanpassen", "Edit", new { id = item.songid })
+						@Html.ActionLink("Verwijderen", "Delete", new { id = item.songid })
+						@Html.ActionLink("Overzicht", "Details", new { id = item.songid })
 					}
 				</td>
 			</tr>
