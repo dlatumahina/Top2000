@@ -12,7 +12,7 @@
 <hr />
 
 <form asp-controller="Lijst" asp-action="Index" method="post">
-	<select name="i">
+	<select name="dropdown">
 		<option value="2000">
 			2000
 		</option>
@@ -87,9 +87,20 @@
 <table class="table">
 	<tr>
 		<th>
-			Titel
+			Positie
 		</th>
-		<th></th>
+		<th>
+            Artiest
+        </th>
+        <th>
+            Titel
+        </th>
+        <th>
+            Uitgebracht in het jaar
+        </th>
+        <th>
+            Gekozen Jaar
+        </th>
 	</tr>
 
 	@foreach (var item in Model)

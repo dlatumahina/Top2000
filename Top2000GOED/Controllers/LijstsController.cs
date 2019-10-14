@@ -1,4 +1,5 @@
 ﻿using PagedList;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -21,12 +22,42 @@ namespace Top2000GOED.Controllers
         }
 
         [HttpPost]
-      //  public ActionResult Index(int dropdown)
-       // {
-        //    // db.Lijst = Het top2000 jaar moet gelijk zijn aan wat er is aangeklikt op de dropdownmenu
-        //    var lijst = db.Lijst.Include(l => l.Song).Where(x => x.top2000jaar == dropdown);
-         //   return View(Lijst.ToList());
-       // }
+        public ActionResult Index(int dropdown)
+        {
+            // db.Lijst = Het top2000 jaar moet gelijk zijn aan wat er is aangeklikt op de dropdownmenu
+            var lijst = db.spGetDetailsArtiest(dropdown);
+            var ListCollection = new List<Lijst>();
+
+            foreach (var item in lijst)
+            {
+                Song song = new Song();
+
+                Artiest artiest = new Artiest();
+
+                song.Artiest = artiest;
+                song.titel = item.titel;
+                song.jaar = item.jaar;
+                
+                artiest.naam = item.naam;
+
+                Lijst lijstDropdown = new Lijst();
+                lijstDropdown.positie = item.positie;
+                lijstDropdown.Song = song;
+                lijstDropdown.Song.Artiest = artiest;
+                lijstDropdown.Song.titel = item.titel;
+                lijstDropdown.top2000jaar = item.top2000jaar;
+                lijstDropdown.Song.jaar = item.jaar;
+
+                ListCollection.Add(lijstDropdown);
+            }
+
+
+
+
+            //var lijst = db.Lijst.Include(l => l.Song).Where(x => x.top2000jaar == dropdown);
+            //return View(lijst.ToList().ToPagedList(1, 10));
+            return View(ListCollection);
+        }
 
         // GET: Lijsts/Details/5
         public ActionResult Details(int? id)
