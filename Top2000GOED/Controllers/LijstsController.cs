@@ -33,12 +33,13 @@ namespace Top2000GOED.Controllers
                 Song song = new Song();
 
                 Artiest artiest = new Artiest();
+                artiest.naam = item.naam;
 
                 song.Artiest = artiest;
                 song.titel = item.titel;
                 song.jaar = item.jaar;
                 
-                artiest.naam = item.naam;
+                
 
                 Lijst lijstDropdown = new Lijst();
                 lijstDropdown.positie = item.positie;
@@ -56,7 +57,7 @@ namespace Top2000GOED.Controllers
 
             //var lijst = db.Lijst.Include(l => l.Song).Where(x => x.top2000jaar == dropdown);
             //return View(lijst.ToList().ToPagedList(1, 10));
-            return View(ListCollection);
+            return View(ListCollection.ToPagedList(1, 10));
         }
 
         // GET: Lijsts/Details/5

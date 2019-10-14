@@ -106,15 +106,22 @@
 	@foreach (var item in Model)
 	{
 		<tr>
-			<td>
-				@Html.DisplayFor(modelItem => item.Song.titel)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Song.Artiest.naam)
-			</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.positie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Song.Artiest.naam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Song.titel)
+            </td>
 			<td>
 				@Html.DisplayFor(modelItem => item.Song.jaar)
 			</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.top2000jaar)
+            </td>
+            
 			<td>
 
 				<!--Html.ActionLink("Details", "Details", new { id = item.PrimaryKey })*/-->
