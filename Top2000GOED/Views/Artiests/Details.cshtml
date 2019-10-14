@@ -27,16 +27,16 @@
         @foreach (var item in Model.Song)
 
         {
-            <div class="col-lg-6"><b style="font-size:larger"> - </b>@item.titel</div>
+        <div class="col-lg-6">
+            <b style="font-size:larger"> - </b>@item.titel   
+            <input style="margin:0 auto; display:block;"
+                type="button"
+                value="Details"
+                onclick="location.href='<%: Url.Action(" Action", "Controller" ) %>
+        </div>
         }
     </th>
 </table>
-
-<<<<<<< HEAD
-<hr />
-=======
-    
->>>>>>> 3d50c4c07092dcdb120e423b433275f2aa020b0f
 
 <p>
     <!--Als admin is ingelogd zie je edit in de details knop, anders niet-->
