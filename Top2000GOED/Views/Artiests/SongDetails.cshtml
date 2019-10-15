@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Top2000GOED.Models.Lijst>
+
+@{
+    ViewBag.Title = "SongDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Noteringen van</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().top2000jaar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().positie)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.top2000jaar)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.positie)
+    </td>
+
+</tr>
+}
+
+</table>

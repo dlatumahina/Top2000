@@ -18,6 +18,5 @@ namespace Top2000GOED.Models
         public string titel { get; set; }
         public int jaar { get; set; }
         public int top2000jaar { get; set; }
-        public object Song { get; internal set; }
     }
 }

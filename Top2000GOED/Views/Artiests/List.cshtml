@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Top2000GOED.Models.Artiest>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.naam)
+            @Html.DisplayNameFor(model => model.Song)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.artiestid)
+        </th>
+    </tr>
+
+@*@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.naam)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.artiestid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.artiestid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.artiestid })
+        </td>
+    </tr>
+}*@
+
+</table>

@@ -30,17 +30,15 @@ namespace Top2000GOED.Controllers
 
             foreach (var item in lijst)
             {
+                // de variable's vullen
                 Song song = new Song();
-
                 Artiest artiest = new Artiest();
                 artiest.naam = item.naam;
-
                 song.Artiest = artiest;
                 song.titel = item.titel;
                 song.jaar = item.jaar;
-                
-                
 
+                // de Lijst van de dropdown vullen
                 Lijst lijstDropdown = new Lijst();
                 lijstDropdown.positie = item.positie;
                 lijstDropdown.Song = song;
@@ -52,10 +50,6 @@ namespace Top2000GOED.Controllers
                 ListCollection.Add(lijstDropdown);
             }
 
-
-
-
-            //var lijst = db.Lijst.Include(l => l.Song).Where(x => x.top2000jaar == dropdown);
             //return View(lijst.ToList().ToPagedList(1, 10));
             return View(ListCollection.ToPagedList(1, 10));
         }

@@ -13,6 +13,13 @@ namespace Top2000GOED.Controllers
     {
         private Top2000Entities db = new Top2000Entities();
 
+        [HttpGet]
+        public ActionResult SongDetails(int? id)
+        {
+            var noteringen = db.Lijst.Where(l => l.songid == id).OrderByDescending(l => l.top2000jaar).ToList();
+            return View(noteringen);
+        }
+
         // GET: Artiests
         public ActionResult Index(int? i, string searching)
         {
