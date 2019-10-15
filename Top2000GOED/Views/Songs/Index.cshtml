@@ -11,7 +11,7 @@
 
 <center><h2>Liedjes</h2></center>
 
-<hr />
+<br />
 
 <p>
 	@if (this.User.IsInRole("admin"))
@@ -22,15 +22,15 @@
 
 @using (Html.BeginForm("Index", "Songs", FormMethod.Get))
 {
-	@Html.TextBox("Searching")<input style="margin-left:5px" type="submit" value="Zoek Liedje" class="btn btn-primary" />
+	@Html.TextBox("Searching", (""), new { placeholder = "Zoeken" } )<input style="margin-left:5px" type="submit" value="Zoek Liedje" class="btn btn-primary" />
 }
 
-<hr />
+<br />
 
 <table class="table">
 	<tr>
 		<th>
-
+            Id
 		</th>
 		<th>
 			Naam
@@ -62,19 +62,19 @@
 			<tr>
 				<td>
 					@Html.DisplayFor(modelItem => item.Artiest.Song.Count)
-					<hr>
+					<br />
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.Artiest.naam)
-					<hr />
+					<br />
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.titel)
-					<hr />
+					
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.jaar)
-					<hr />
+					<br />
 				</td>
 				<td>
 

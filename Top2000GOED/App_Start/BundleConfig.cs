@@ -22,7 +22,7 @@ namespace Top2000GOED
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-lumen.css",
+                      "~/Content/bootstrap-main.css",
                       "~/Content/site.css"));
         }
     }

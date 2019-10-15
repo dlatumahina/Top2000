@@ -10,7 +10,7 @@
 @using PagedList;
 @using Top2000GOED.Models
 <center><h2>Artiest</h2></center>
-<hr />
+<br />
 <p>
 	@if (this.User.IsInRole("admin"))
 	{
@@ -20,10 +20,10 @@
 
 @using (Html.BeginForm("Index", "Artiests", FormMethod.Get))
 {
-	@Html.TextBox("Searching")<input style="margin-left:5px" type="submit" value="Zoeken" class="btn btn-primary" />
+	@Html.TextBox("Searching",(""), new { placeholder = "Zoeken" })<input style="margin-left:5px" type="submit" value="Zoeken" class="btn btn-primary" />
 }
 
-<hr />
+<br />
 
 
 <table id="artistTable" class="table">
