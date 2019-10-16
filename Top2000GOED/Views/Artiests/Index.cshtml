@@ -1,36 +1,42 @@
-﻿@model IPagedList<Top2000GOED.Models.Artiest>
+﻿@* Dit is de index van artiesten *@
+
+@model IPagedList<Top2000GOED.Models.Artiest>
 @{
-	/**/
 
 	ViewBag.Title = "Index";
 	Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
+
 @using System.Linq
 @using PagedList.Mvc;
 @using PagedList;
 @using Top2000GOED.Models
+
 <center><h2>Artiest</h2></center>
 
 <hr />
 
+@* Hier is de zoekbalk toegevoegt *@
 @using (Html.BeginForm("Index", "Artiests", FormMethod.Get))
 
 {
-@Html.TextBox("Searching")<input style="margin-left:5px" type="submit" value="Zoeken" class="btn-primary btn-default" />
+	@Html.TextBox("Searching")<input style="margin-left:5px" type="submit" value="Zoeken" class="btn-primary btn-default" />
 }
 
 <br />
 
+@* Alleen als je Admin bent kan je de knop toevoegen zien / iets toevoegen *@
 <p>
-		@if (this.User.IsInRole("admin"))
-		{
-			<button>@Html.ActionLink("Aanmaken", "Create")</button>
-		}
+	@if (this.User.IsInRole("admin"))
+	{
+		<button>@Html.ActionLink("Aanmaken", "Create")</button>
+	}
 </p>
 
 <hr />
 
-
+@* Dit is wat je ziet op de index pagina *@
 <table id="artistTable" class="table">
 	<tr>
 		<th>
@@ -44,6 +50,8 @@
 		</th>
 		<th></th>
 	</tr>
+
+	@* Als de database leeg is en je niks kan laten zien op de pagina geeft hij de volgende melding: *@
 	@if (Model.Count() == 0)
 	{
 		<tr>
@@ -53,6 +61,7 @@
 		</tr>
 	}
 
+	@* Als je wel dingen laat zien uit de database laat hij de volgende dingen zien: *@
 	else
 	{
 		foreach (var item in Model)
@@ -83,5 +92,7 @@
 		}
 	}
 </table>
+
+@* Dit is de paging van de website *@
 @Html.PagedListPager(Model, i => Url.Action("Index", "Artiests", new { i, search = Request.QueryString["search"] }))
 

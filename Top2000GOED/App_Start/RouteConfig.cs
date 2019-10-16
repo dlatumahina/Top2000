@@ -1,6 +1,9 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
+// Hier wordt de default route aangegeven. 
+// Home is index 
+
 namespace Top2000GOED
 {
     public class RouteConfig

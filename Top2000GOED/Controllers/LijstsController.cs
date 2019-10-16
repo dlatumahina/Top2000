@@ -16,7 +16,7 @@ namespace Top2000GOED.Controllers
         // GET: Lijsts
         public ActionResult Index(int? i)
         {
-            // db.Lijst = omgezet naar variabel x en gesorteerd op jaar
+			// Hier wordt alles omgezet naar een variabel x en dat wordt gesorteerd op jaar
             var lijst = db.Lijst.Include(l => l.Song).OrderBy(x => x.top2000jaar);
             return View(lijst.ToList().ToPagedList(i ?? 1, 10));
         }
@@ -24,21 +24,21 @@ namespace Top2000GOED.Controllers
         [HttpPost]
         public ActionResult Index(int dropdown)
         {
-            // db.Lijst = Het top2000 jaar moet gelijk zijn aan wat er is aangeklikt op de dropdownmenu
+			// Hier wordt aangegeven dat het jaar wat je opvraagt van de dropdown gelijk moet zijn met hetgene wat hij aantoont
             var lijst = db.spGetDetailsArtiest(dropdown);
             var ListCollection = new List<Lijst>();
 
             foreach (var item in lijst)
             {
-                // de variable's vullen
-                Song song = new Song();
+				// Alle variabelen die zijn toegevoegt aan lijst
+				Song song = new Song();
                 Artiest artiest = new Artiest();
                 artiest.naam = item.naam;
                 song.Artiest = artiest;
                 song.titel = item.titel;
                 song.jaar = item.jaar;
 
-                // de Lijst van de dropdown vullen
+                // Alle variabelen die zijn toegevoegt aan de dropdown van lijst
                 Lijst lijstDropdown = new Lijst();
                 lijstDropdown.positie = item.positie;
                 lijstDropdown.Song = song;
@@ -51,10 +51,12 @@ namespace Top2000GOED.Controllers
             }
 
             //return View(lijst.ToList().ToPagedList(1, 10));
+			//Je vraagt de paging op
             return View(ListCollection.ToPagedList(1, 10));
         }
 
         // GET: Lijsts/Details/5
+		// Je vraagt hier de details van lijst op
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -79,6 +81,7 @@ namespace Top2000GOED.Controllers
         // POST: Lijsts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+		// Hier kun je het Jaar, Song en Positie aanmaken
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "songid,top2000jaar,positie")] Lijst lijst)
@@ -95,6 +98,7 @@ namespace Top2000GOED.Controllers
         }
 
         // GET: Lijsts/Edit/5
+		// Als je niks aanpast en dan op Edit klikt geeft hij een foutmelding
         public ActionResult Edit(int? idJaar, int? idPositie)
         {
             if (idJaar == null || idPositie == null)
@@ -113,6 +117,7 @@ namespace Top2000GOED.Controllers
         // POST: Lijsts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+		// Hier kun je het Jaar, Song en Positie aanpassen
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "songid,top2000jaar,positie")] Lijst lijst)
@@ -128,6 +133,7 @@ namespace Top2000GOED.Controllers
         }
 
         // GET: Lijsts/Delete/5
+		// Hier geeft hij aan dat je het niet kan verwijderen als je niks aangeeft
         public ActionResult Delete(int? idJaar, int? idPositie)
         {
             if (idJaar == null || idPositie == null)
@@ -143,6 +149,7 @@ namespace Top2000GOED.Controllers
         }
 
         // POST: Lijsts/Delete/5
+		// Als je het verwijdert (jaar, en positie) van de lijst wordt je teruggestuurd naar de index van lijst
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int idJaar, int idPositie)

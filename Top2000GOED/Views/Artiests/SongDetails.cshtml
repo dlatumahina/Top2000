@@ -1,38 +1,41 @@
-﻿@model IEnumerable<Top2000GOED.Models.Lijst>
+﻿@* Dit is de details pagina van artiest over de songs *@
+@model IEnumerable<Top2000GOED.Models.Lijst>
 
 @{
-    ViewBag.Title = "SongDetails";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "SongDetails";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@* Hier laat hij alle noteringen zien en daarbij komen de Titel, jaar en positie bij mee *@
 <h2>Noteringen van</h2>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Song.titel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().top2000jaar)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().positie)
-        </th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Song.titel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.top2000jaar)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.positie)
-                <hr />
-            </td>
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.Song.titel)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.FirstOrDefault().top2000jaar)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.FirstOrDefault().positie)
+		</th>
+	</tr>
 
-        </tr>
-    }
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Song.titel)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.top2000jaar)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.positie)
+				<hr />
+			</td>
+
+		</tr>
+	}
 
 </table>

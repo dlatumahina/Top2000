@@ -24,7 +24,7 @@ namespace Top2000GOED.Models
     {
         public string Purpose { get; set; }
     }
-
+	// Hier maak je een wachtwoord aan
     public class SetPasswordViewModel
     {
         [Required]
@@ -39,6 +39,9 @@ namespace Top2000GOED.Models
         public string ConfirmPassword { get; set; }
     }
 
+	
+	// Hier kun je een wachtwoord veranderen
+	// Je ziet hier dat je wachtwoord minimaal uit 6 characters moet bestaan
     public class ChangePasswordViewModel
     {
         [Required]
@@ -58,6 +61,7 @@ namespace Top2000GOED.Models
         public string ConfirmPassword { get; set; }
     }
 
+	// Je kan ook een telefoon nummer toevoegen aan je account voor de veiligheid
     public class AddPhoneNumberViewModel
     {
         [Required]

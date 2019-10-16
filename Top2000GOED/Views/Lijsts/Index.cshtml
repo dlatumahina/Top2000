@@ -1,4 +1,5 @@
-﻿@model IPagedList<Top2000GOED.Models.Lijst>
+﻿@* Hier zie je de index pagina van lijst *@
+@model IPagedList<Top2000GOED.Models.Lijst>
 
 @{
 	ViewBag.Title = "Index";
@@ -7,10 +8,12 @@
 @using PagedList.Mvc;
 @using PagedList;
 @using Top2000GOED.Models
+
 <center><h2>Lijst</h2></center>
 
 <hr />
 
+@* Hier zie je de dropdown die wordt weergegeven op de pagina *@
 <form asp-controller="Lijst" asp-action="Index" method="post">
 	<select name="dropdown">
 		<option value="2000">
@@ -76,14 +79,20 @@
 	</select>
 	<input type="submit" value="Zoeken" />
 </form>
+
 <br />
+
+@* Alleen als je admin bent kan je iets aanmaken*@
 <p>
 	@if (this.User.IsInRole("admin"))
 	{
 		<button>@Html.ActionLink("Aanmaken", "Create")</button>
 	}
 </p>
+
 <hr />
+
+@* Dit weergeeft hij op de pagina *@
 <table class="table">
 	<tr>
 		<th>
@@ -103,6 +112,7 @@
         </th>
 	</tr>
 
+@* Hier haalt hij alle informatie uit de database *@
 	@foreach (var item in Model)
 	{
 		<tr>

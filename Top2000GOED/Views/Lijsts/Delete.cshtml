@@ -1,8 +1,9 @@
-﻿@model Top2000GOED.Models.Lijst
+﻿@* Hier zie je het scherm wat je ziet als je een song uit de lijst wil verwijderen *@
+@model Top2000GOED.Models.Lijst
 
 @{
-    ViewBag.Title = "Delete";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Delete";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <center><h2>Delete</h2></center>
@@ -13,26 +14,28 @@
 
 <br />
 
+@* Je verwijdert de Song titel uit de lijst *@
 <div>
-    <h4>Lijst</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Song.titel)
-        </dt>
+	<h4>Lijst</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Song.titel)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Song.titel)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Song.titel)
+		</dd>
 
-    </dl>
+	</dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Verwijderen" class="btn btn-default" /> |
-            @Html.ActionLink("Terug", "Index")
-        </div>
-    }
+		<div class="form-actions no-color">
+			<input type="submit" value="Verwijderen" class="btn btn-default" /> |
+			@Html.ActionLink("Terug", "Index")
+		</div>
+	}
 </div>

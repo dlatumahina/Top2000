@@ -1,8 +1,10 @@
-﻿@model Top2000GOED.Models.Artiest
+﻿@* Dit is het verwijder scherm van Artiesten *@
+
+@model Top2000GOED.Models.Artiest
 
 @{
-    ViewBag.Title = "Delete";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Delete";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <center><h2>Verwijderen</h2></center>
@@ -11,26 +13,29 @@
 
 <br />
 
+@* Je laat hier de naam van de artiest zien die je wil verwijderen *@
 <div>
-    <h4>Artiest</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.naam)
-        </dt>
+	<h4>Artiest</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.naam)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.naam)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.naam)
+		</dd>
 
-    </dl>
+	</dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+@* Dit is de button voor als je het echt wil verwijderen *@
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Terug", "Index")
-        </div>
-    }
+		<div class="form-actions no-color">
+			<input type="submit" value="Delete" class="btn btn-default" /> |
+			@Html.ActionLink("Terug", "Index")
+		</div>
+	}
 </div>

@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using Top2000GOED.Models;
 
+//Automatisch gegenereerd
+
 namespace Top2000GOED.Controllers
 {
     [Authorize]

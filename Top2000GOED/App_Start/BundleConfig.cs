@@ -1,5 +1,8 @@
 ﻿using System.Web.Optimization;
 
+
+//Hier is alle bootstrap gelinkt.
+
 namespace Top2000GOED
 {
     public class BundleConfig

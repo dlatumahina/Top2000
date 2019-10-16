@@ -8,7 +8,8 @@ namespace Top2000GOED.Models
             : base("name=Top2000DataBase")
         {
         }
-
+		
+		// Hier zie je dat Artiest, Lijst en Song uit de database zijn ingesteld
         public virtual DbSet<Artiest> Artiest { get; set; }
         public virtual DbSet<Lijst> Lijst { get; set; }
         public virtual DbSet<Song> Song { get; set; }

@@ -1,35 +1,40 @@
-﻿@model Top2000GOED.Models.Artiest
+﻿@* Het aanmaak scherm van Artiesten *@
+
+@model Top2000GOED.Models.Artiest
 
 @{
-    ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Create";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <center><h2>Aanmaken</h2></center>
 
-
-@using (Html.BeginForm()) 
+@* Je vraagt hier de naam op van een artiest en dat kun je daarna met een knop toevoegen *@
+@using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Artiest</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.naam, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.naam, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.naam, "", new { @class = "text-danger" })
-            </div>
-        </div>
+	@Html.AntiForgeryToken()
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Toevoegen" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+	<div class="form-horizontal">
+
+		<h4>Artiest</h4>
+
+		<hr />
+
+		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+		<div class="form-group">
+			@Html.LabelFor(model => model.naam, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.naam, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.ValidationMessageFor(model => model.naam, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="Toevoegen" class="btn btn-default" />
+			</div>
+		</div>
+	</div>
 }
 
 <div>
@@ -37,5 +42,5 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/jqueryval")
 }

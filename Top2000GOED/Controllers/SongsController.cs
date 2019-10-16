@@ -12,7 +12,7 @@ namespace Top2000GOED.Models
         private Top2000Entities db = new Top2000Entities();
 
         // GET: Songs
-
+		// In de index van Songs kun je zoeken op titel, artiest etc
         public ActionResult Index(string searching, int? i, string sortBy)
         {
             return View(db.Song.Where(x => x.titel.Contains(searching) || searching == null).ToList().ToPagedList(i ?? 1, 10));
@@ -20,6 +20,7 @@ namespace Top2000GOED.Models
 
 
         // GET: Songs/Details/5
+		// Als je geen id aangeeft bij details dan geeft hij een foutmelding terug
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,6 +36,7 @@ namespace Top2000GOED.Models
         }
 
         // GET: Songs/Create
+		// Als de rol admin is dan kun je iets aanmaken bij artiest
         [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
@@ -45,6 +47,7 @@ namespace Top2000GOED.Models
         // POST: Songs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+		// Als je admin bent dan kan je een Song aanmaken met De naam van de Song, Artiest en de Titel en Jaar van dat nummer.
         [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -62,6 +65,7 @@ namespace Top2000GOED.Models
         }
 
         // GET: Songs/Edit/5
+		// Als je admin bent en iets wil aanmaken wat leeg is geeft hij een foutmelding
         [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
@@ -81,6 +85,7 @@ namespace Top2000GOED.Models
         // POST: Songs/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+		// Als je admin bent dan kan je de Song, Artiest, Titel en jaar aanpassen
         [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -97,6 +102,7 @@ namespace Top2000GOED.Models
         }
 
         // GET: Songs/Delete/5
+		// Als je admin bent kun je ook dingen verwijderen. als je niks aangeeft wat je wil verwijderen dan geeft hij een foutmelding aan
         [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
@@ -113,6 +119,7 @@ namespace Top2000GOED.Models
         }
 
         // POST: Songs/Delete/5
+		// als admin kun je songs verwijderen.
         [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

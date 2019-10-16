@@ -1,43 +1,51 @@
-﻿@model Top2000GOED.Models.Artiest
+﻿
+@* Dit is het overzicht scherm van Artiesten *@
+
+@model Top2000GOED.Models.Artiest
 
 @{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Details";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <center><h2>Overzicht</h2></center>
+
 <hr />
-@*The name of the artist*@
+
+@* De naam van de artiest *@
 <div>
-    <h4>Artiest: <b>@Html.DisplayFor(model=> model.naam)</b></h4>
-    <hr />
+	<h4>Artiest: <b>@Html.DisplayFor(model => model.naam)</b></h4>
+	<hr />
 </div>
-@* show the number of songs from this artist from the current year. *@
+
+@* Laat zien wat het aantal nummers is van dat artiest van een bepaald jaar *@
 <div>
-    <h4> Aantal noteringen van <b>@Html.DisplayFor(model=> model.naam)</b> in de Top-2000: <b>@Html.DisplayFor(model => model.Song.Count)</b></h4>
+	<h4> Aantal noteringen van <b>@Html.DisplayFor(model => model.naam)</b> in de Top-2000: <b>@Html.DisplayFor(model => model.Song.Count)</b></h4>
 
 	<hr />
 
 </div>
-@* all the songs of the chosen artist*@
-    <h4>Meer liedjes van: <b>@Html.DisplayFor(model => model.naam)</b> van alle jaren.</h4>
 
-    @*Shows the list of all the songs of this artist*@
-        @foreach (var item in Model.Song)
-        {
-            <div class="col-lg-6">
-                <b style="font-size:larger"> - </b>   
-                <button style="display:block;"
-                        onclick="location.href='@Url.Action("SongDetails","Artiests", new { id = item.songid })'">
-                    @item.titel
-                </button>
-            </div>
-        }
+@* Alle Songs van een gekozen artiest*@
+<h4>Meer liedjes van: <b>@Html.DisplayFor(model => model.naam)</b> van alle jaren.</h4>
+
+@* Laat een lijst zien met alle nummers van een bepaalde artiest *@
+@foreach (var item in Model.Song)
+{
+	<div class="col-lg-6">
+		<b style="font-size:larger"> - </b>
+		<button style="display:block;"
+				onclick="location.href='@Url.Action("SongDetails","Artiests", new { id = item.songid })'">
+			@item.titel
+		</button>
+	</div>
+}
 
 <p>
-    <!--Als admin is ingelogd zie je edit in de details knop, anders niet-->
-    @if (this.User.IsInRole("admin"))
-    {
-	<button>@Html.ActionLink("Aanpassen", "Edit", new { id = Model.artiestid })</button>
+	<!--Als admin is ingelogd zie je edit in de details knop, anders niet-->
+	@if (this.User.IsInRole("admin"))
+	{
+		<button>@Html.ActionLink("Aanpassen", "Edit", new { id = Model.artiestid })</button>
 	}
 </p>
 
