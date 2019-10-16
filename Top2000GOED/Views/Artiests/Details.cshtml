@@ -16,34 +16,29 @@
     <h4> Aantal noteringen van <b>@Html.DisplayFor(model=> model.naam)</b> in de Top-2000: <b>@Html.DisplayFor(model => model.Song.Count)</b></h4>
 
 	<hr />
-          
-    <b></b>
+
 </div>
 @* all the songs of the chosen artist*@
-<table>
     <h4>Meer liedjes van: <b>@Html.DisplayFor(model => model.naam)</b> van alle jaren.</h4>
+
     @*Shows the list of all the songs of this artist*@
-    <th>
         @foreach (var item in Model.Song)
-
         {
-            <div class="col-lg-6"><b style="font-size:larger"> - </b>@item.titel</div>
+            <div class="col-lg-6">
+                <b style="font-size:larger"> - </b>   
+                <button style="display:block;"
+                        onclick="location.href='@Url.Action("SongDetails","Artiests", new { id = item.songid })'">
+                    @item.titel
+                </button>
+            </div>
         }
-    </th>
-</table>
-
-<<<<<<< HEAD
-<hr />
-=======
-    
->>>>>>> 3d50c4c07092dcdb120e423b433275f2aa020b0f
 
 <p>
     <!--Als admin is ingelogd zie je edit in de details knop, anders niet-->
     @if (this.User.IsInRole("admin"))
     {
 	<button>@Html.ActionLink("Aanpassen", "Edit", new { id = Model.artiestid })</button>
-		}
+	}
 </p>
 
 <hr />

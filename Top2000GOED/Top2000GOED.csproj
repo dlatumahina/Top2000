@@ -309,6 +309,8 @@
     <Content Include="Views\Songs\Details.cshtml" />
     <Content Include="Views\Songs\Edit.cshtml" />
     <Content Include="Views\Songs\Index.cshtml" />
+    <Content Include="Views\Artiests\List.cshtml" />
+    <Content Include="Views\Artiests\SongDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include=".vs\Top2000GOED\v15\Server\sqlite3\" />

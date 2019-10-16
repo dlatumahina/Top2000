@@ -96,13 +96,13 @@
             <End Role="Song" EntitySet="Song" />
           </AssociationSet>
           <FunctionImport Name="spGetDetailsArtiest" ReturnType="Collection(Top2000Model.spGetDetailsArtiest_Result)">
-            <Parameter Name="YEAR" Mode="In" Type="Int32" />
+          <Parameter Name="YEAR" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spGetListByYear" ReturnType="Collection(Top2000Model.spGetListByYear_Result)">
-            <Parameter Name="YEAR" Mode="In" Type="Int32" />
+          <Parameter Name="YEAR" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spGetSongsByYear" ReturnType="Collection(Top2000Model.spGetSongsByYear_Result)">
-            <Parameter Name="YEAR" Mode="In" Type="Int32" />
+          <Parameter Name="YEAR" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Artiest">
