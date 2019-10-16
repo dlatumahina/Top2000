@@ -23,7 +23,7 @@ namespace Top2000GOED.Controllers
         // GET: Artiests
         public ActionResult Index(int? i, string searching)
         {
-            return View(db.Artiest.Where(x => x.naam.Contains(searching) || searching == null).ToList().ToPagedList(i ?? 1, 3));
+            return View(db.Artiest.Where(x => x.naam.Contains(searching) || searching == null).ToList().ToPagedList(i ?? 1, 10));
         }
 
         // GET: Artiests/Details/5
