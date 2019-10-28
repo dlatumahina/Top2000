@@ -24,7 +24,7 @@
 
 @using (Html.BeginForm("Index", "Songs", FormMethod.Get))
 {
-	@Html.TextBox("Searching")<input style="margin-left:5px" type="submit" value="Zoeken" class="btn-primary btn-default" />
+	@Html.TextBox("Searching",(""), new { placeholder = "Zoeken" })<input style="margin-left:5px" type="submit" value="Zoeken" class="btn-primary btn-default" />
 }
 
 <hr />
