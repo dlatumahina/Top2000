@@ -15,16 +15,16 @@
 <hr />
 
 @* Alleen als je admin bent kan je een song aanmaken *@
-<p>
+<div>
 	@if (this.User.IsInRole("admin"))
 	{
-		@Html.ActionLink("Aanmaken", "Create");
+	<p>@Html.ActionLink(" ", "Create", " ", new { @class = "fa fa-plus-square fa-xs" })</p>
 	}
-</p>
+</div>
 
 @using (Html.BeginForm("Index", "Songs", FormMethod.Get))
 {
-	@Html.TextBox("Searching")<input style="margin-left:5px" type="submit" value="Zoeken" class="btn-primary btn-default" />
+	@Html.TextBox("Searching",(""), new { placeholder = "Zoeken" })<input style="margin-left:5px" type="submit" value="Zoeken" class="btn btn-primary btn-default" />
 }
 
 <hr />
@@ -32,7 +32,7 @@
 <table class="table">
 	<tr>
 		<th>
-
+			Nr.
 		</th>
 		<th>
 			Naam
@@ -87,9 +87,11 @@
 					<!--Als admin is ingelogd kan je een liedje bewerken en verwijderen. Anders niet-->
 					@if (this.User.IsInRole("admin"))
 					{
-						@Html.ActionLink("Aanpassen", "Edit", new { id = item.songid })
-						@Html.ActionLink("Verwijderen", "Delete", new { id = item.songid })
-						@Html.ActionLink("Overzicht", "Details", new { id = item.songid })
+					<div style="font-size: 0.5rem">
+						@Html.ActionLink(" ", "Edit", new { id = item.songid }, new { @class = "fa fa-edit fa-xs" })
+						@Html.ActionLink(" ", "Delete", new { id = item.songid }, new { @class = "fa fa-trash fa-xs" })
+						@Html.ActionLink(" ", "Details", new { id = item.songid }, new { @class = "fa fa-book fa-xs" })
+					</div>
 					}
 				</td>
 			</tr>
