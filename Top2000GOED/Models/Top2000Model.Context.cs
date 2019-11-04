@@ -20,7 +20,7 @@ namespace Top2000GOED.Models
         public Top2000Entities()
             : base("name=Top2000Entities")
         {
-        } 
+        }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -2,8 +2,8 @@
 @model IPagedList<Top2000GOED.Models.Lijst>
 
 @{
-	ViewBag.Title = "Index";
-	Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using PagedList.Mvc;
 @using PagedList;
@@ -15,136 +15,121 @@
 
 @* Hier zie je de dropdown die wordt weergegeven op de pagina *@
 <form asp-controller="Lijst" asp-action="Index" method="post">
-	<select name="dropdown">
-		<option value="2000">
-			2000
-		</option>
-		<option value="2001">
-			2001
-		</option>
-		<option value="2002">
-			2002
-		</option>
-		<option value="2003">
-			2003
-		</option>
-		<option value="2004">
-			2004
-		</option>
-		<option value="2005">
-			2005
-		</option>
-		<option value="2006">
-			2006
-		</option>
-		<option value="2007">
-			2007
-		</option>
-		<option value="2008">
-			2008
-		</option>
-		<option value="2009">
-			2009
-		</option>
-		<option value="2010">
-			2010
-		</option>
-		<option value="2011">
-			2011
-		</option>
-		<option value="2012">
-			2012
-		</option>
-		<option value="2013">
-			2013
-		</option>
-		<option value="2014">
-			2014
-		</option>
-		<option value="2015">
-			2015
-		</option>
-		<option value="2016">
-			2016
-		</option>
-		<option value="2017">
-			2017
-		</option>
-		<option value="2018">
-			2018
-		</option>
-		<option value="2019">
-			2019
-		</option>
-	</select>
-	<input type="submit" value="Zoeken" />
+    <select name="dropdown">
+        <option value="2000">
+            2000
+        </option>
+        <option value="2001">
+            2001
+        </option>
+        <option value="2002">
+            2002
+        </option>
+        <option value="2003">
+            2003
+        </option>
+        <option value="2004">
+            2004
+        </option>
+        <option value="2005">
+            2005
+        </option>
+        <option value="2006">
+            2006
+        </option>
+        <option value="2007">
+            2007
+        </option>
+        <option value="2008">
+            2008
+        </option>
+        <option value="2009">
+            2009
+        </option>
+        <option value="2010">
+            2010
+        </option>
+        <option value="2011">
+            2011
+        </option>
+        <option value="2012">
+            2012
+        </option>
+        <option value="2013">
+            2013
+        </option>
+        <option value="2014">
+            2014
+        </option>
+        <option value="2015">
+            2015
+        </option>
+        <option value="2016">
+            2016
+        </option>
+        <option value="2017">
+            2017
+        </option>
+        <option value="2018">
+            2018
+        </option>
+        <option value="2019">
+            2019
+        </option>
+    </select>
+    <input style="margin-left:5px" type="submit" value="Zoeken" class="btn btn-primary btn-default" />
 </form>
 
 <br />
+    <hr />
 
-@* Alleen als je admin bent kan je iets aanmaken*@
-<p>
-	@if (this.User.IsInRole("admin"))
-	{
-		<button>@Html.ActionLink("Aanmaken", "Create")</button>
-	}
-</p>
+    @* Dit weergeeft hij op de pagina *@
+    <table class="table">
+        <tr>
+            <th>
+                Positie
+            </th>
+            <th>
+                Artiest
+            </th>
+            <th>
+                Titel
+            </th>
+            <th>
+                Uitgebracht in het jaar
+            </th>
+            <th>
+                Gekozen Jaar
+            </th>
+        </tr>
 
-<hr />
+        @* Hier haalt hij alle informatie uit de database *@
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.positie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Song.Artiest.naam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Song.titel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Song.jaar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.top2000jaar)
+                </td>
 
-@* Dit weergeeft hij op de pagina *@
-<table class="table">
-	<tr>
-		<th>
-			Positie
-		</th>
-		<th>
-            Artiest
-        </th>
-        <th>
-            Titel
-        </th>
-        <th>
-            Uitgebracht in het jaar
-        </th>
-        <th>
-            Gekozen Jaar
-        </th>
-	</tr>
+                <td>
 
-@* Hier haalt hij alle informatie uit de database *@
-	@foreach (var item in Model)
-	{
-		<tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.positie)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Song.Artiest.naam)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Song.titel)
-            </td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Song.jaar)
-			</td>
-            <td>
-                @Html.DisplayFor(modelItem => item.top2000jaar)
-            </td>
-            
-			<td>
 
-				<!--Html.ActionLink("Details", "Details", new { id = item.PrimaryKey })*/-->
-				<!--Als admin is ingelogd kan je een artiest bewerken en verwijderen. Anders niet-->
-				@if (this.User.IsInRole("admin"))
-				{
-					<button>@Html.ActionLink("Verwijderen ", "Delete", new { idJaar = item.top2000jaar, idPositie = item.positie })</button>
-					<button>@Html.ActionLink("Aanpassen", "Edit", new { idJaar = item.top2000jaar, idPositie = item.positie })</button>
-				}
-			</td>
-		</tr>
-	}
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
 
-@Html.PagedListPager(Model, i => Url.Action("Index", "Lijsts", new { i, search = Request.QueryString["search"] }))
+    @Html.PagedListPager(Model, i => Url.Action("Index", "Lijsts", new { i, search = Request.QueryString["search"] }))
