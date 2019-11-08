@@ -15,7 +15,7 @@
 
 <center><h2>Artiest</h2></center>
 
-<hr />
+
 
 @* Hier is de zoekbalk toegevoegt *@
 @using (Html.BeginForm("Index", "Artiests", FormMethod.Get))
@@ -84,7 +84,7 @@
 					<!--Als admin is ingelogd kan je een artiest bewerken en verwijderen. Anders niet-->
 					@if (this.User.IsInRole("admin"))
 					{
-						@Html.ActionLink("Verwijder", "Delete", new { id = item.artiestid })
+						
 						@Html.ActionLink("Aanpassen", "Edit", new { id = item.artiestid })
 					}
 				</td>

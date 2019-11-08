@@ -1,4 +1,5 @@
 ﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -14,9 +15,15 @@ namespace Top2000GOED.Controllers
         private Top2000Entities db = new Top2000Entities();
 
         // GET: Lijsts
-        public ActionResult Index(int? i)
+        public ActionResult Index(int? i=0)
         {
-			// Hier wordt alles omgezet naar een variabel x en dat wordt gesorteerd op jaar
+            if (i == 0)
+            {
+                i = DateTime.Now.Year - 3;
+            }
+
+
+            // Hier wordt alles omgezet naar een variabel x en dat wordt gesorteerd op jaar
             var lijst = db.Lijst.Include(l => l.Song).OrderBy(x => x.top2000jaar);
             return View(lijst.ToList().ToPagedList(i ?? 1, 10));
         }
@@ -48,6 +55,7 @@ namespace Top2000GOED.Controllers
                 lijstDropdown.Song.jaar = item.jaar;
 
                 ListCollection.Add(lijstDropdown);
+                ViewBag.SelectedItem = dropdown;
             }
 
             //return View(lijst.ToList().ToPagedList(1, 10));

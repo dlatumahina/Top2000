@@ -25,7 +25,7 @@ namespace Top2000GOED.Controllers
 		// Hier vraag je de index op van artiest
         public ActionResult Index(int? i, string searching)
         {
-            return View(db.Artiest.Where(x => x.naam.Contains(searching) || searching == null).ToList().ToPagedList(i ?? 1, 3));
+            return View(db.Artiest.Where(x => x.naam.Contains(searching) || searching == null).ToList().ToPagedList(i ?? 1, 10));
         }
 
         // GET: Artiests/Details/5
@@ -102,7 +102,8 @@ namespace Top2000GOED.Controllers
         }
 
         // GET: Artiests/Delete/5
-		// Als je een artiest wil verwijderen die niet bestaat dan geeft hij een foutmelding aan
+        // Als je een artiest wil verwijderen die niet bestaat dan geeft hij een foutmelding aan
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -118,7 +119,8 @@ namespace Top2000GOED.Controllers
         }
 
         // POST: Artiests/Delete/5
-		// Je kan een artiest verwijderen als je dit doet dan wordt je teruggestuurd naar de index van artiest
+        // Je kan een artiest verwijderen als je dit doet dan wordt je teruggestuurd naar de index van artiest
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
