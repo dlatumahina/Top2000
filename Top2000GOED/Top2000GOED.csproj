@@ -174,15 +174,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Controllers\ArtiestsController.cs" />
     <Compile Include="Models\Artiest.cs">
       <DependentUpon>Top2000Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\ArtiestsController.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Controllers\LijstsController.cs" />
     <Compile Include="Models\Lijst.cs">
       <DependentUpon>Top2000Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\LijstsController.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Song.cs">
       <DependentUpon>Top2000Model.tt</DependentUpon>
